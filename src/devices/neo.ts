@@ -495,7 +495,7 @@ export const definitions: DefinitionWithExtend[] = [
                 .withValueStep(75)
                 .withDescription("Motion Range Detection"),
             e
-                .numeric("motion_sensitivity_value", ea.STATE_SET)
+                .numeric("motion_sensitivity", ea.STATE_SET)
                 .withValueMin(0)
                 .withValueMax(7)
                 .withValueStep(1)
@@ -521,11 +521,12 @@ export const definitions: DefinitionWithExtend[] = [
                 [13, "motion_far_detection", tuya.valueConverter.raw],
                 [15, "motion_sensitivity", tuya.valueConverter.raw],
                 [16, "motionless_sensitivity", tuya.valueConverter.raw],
-                [101, "work_mode", tuya.valueConverterBasic.lookup({manual: 0, auto: 1})],
+                [101, "work_mode", tuya.valueConverterBasic.lookup({manual: tuya.enum(0), auto: tuya.enum(1)})],
                 [104, "output_switch", tuya.valueConverter.onOff],
                 [103, "output_time", tuya.valueConverter.raw],
                 [105, "led_switch", tuya.valueConverter.onOff],
-                [102, "lux_value", tuya.valueConverterBasic.lookup({"10_lux": 0, "20_lux": 1, "50_lux": 2, "24h": 3})],
+                [102, "lux_value", tuya.valueConverterBasic.lookup({
+                    "10 lux": tuya.enum(0), "20 lux": tuya.enum(1), "50 lux": tuya.enum(2), "24h": tuya.enum(3)})],
             ],
         },
     },
